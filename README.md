@@ -57,19 +57,20 @@ PY
 ## Convert to Splunk
 
 ```bash
-python - <<'PY' >/tmp/request.json
-import json
-print(json.dumps({
-    'sigma': open('example-rule.yml').read(),
-    'backend': 'splunk',
-    'pipelines': ['splunk_windows'],
-    'format': 'default'
-}))
-PY
-
-curl -s http://localhost:8001/api/v1/convert \
+curl -sS http://127.0.0.1:8001/api/v1/convert \
   -H 'Content-Type: application/json' \
-  --data-binary @/tmp/request.json | jq
+  --data-binary "$(python3 - <<'PY'
+import json
+
+with open("example-rule.yml") as f:
+    print(json.dumps({
+        "sigma": f.read(),
+        "backend": "splunk",
+        "pipelines": ["splunk_windows"],
+        "format": "default"
+    }))
+PY
+)" | jq
 ```
 
 ## Convert to OpenSearch PPL
