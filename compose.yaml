@@ -1,0 +1,11 @@
+services:
+  pysigma-api:
+    build: .
+    image: localhost/pysigma-api:latest
+    container_name: pysigma-api
+    ports:
+      - "8001:8000"
+    environment:
+      PYSIGMA_CORS_ORIGINS: "*"
+      # PYSIGMA_API_KEY: "replace-me"
+    restart: unless-stopped

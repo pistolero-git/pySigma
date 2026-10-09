@@ -1,0 +1,10 @@
+# Pinned as a compatible pySigma/plugin set. pySigma 2.0.0 was released on
+# 2026-10-04, while these backend releases still declare pySigma <2 support.
+fastapi>=0.115,<1
+uvicorn[standard]>=0.30,<1
+pydantic-settings>=2.6,<3
+pysigma==1.5.1
+pysigma-backend-splunk==2.1.0
+pysigma-backend-elasticsearch==2.1.1
+pysigma-backend-opensearch==2.0.3
+pysigma-pipeline-sysmon==2.0.0

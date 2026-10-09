@@ -1,0 +1,18 @@
+[Unit]
+Description=pySigma REST API
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=localhost/pysigma-api:latest
+ContainerName=pysigma-api
+PublishPort=8001:8000
+Environment=PYSIGMA_CORS_ORIGINS=*
+# Environment=PYSIGMA_API_KEY=replace-me
+
+[Service]
+Restart=on-failure
+TimeoutStartSec=120
+
+[Install]
+WantedBy=default.target
